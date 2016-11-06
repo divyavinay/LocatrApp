@@ -9,6 +9,8 @@ public class GalleryItems {
     private String mCaption;
     private String mId;
     private String mUrl;
+    private double mLat;
+    private double mLon;
 
     @Override
     public String toString() {
@@ -33,5 +35,21 @@ public class GalleryItems {
 
     public void setCaption(String caption) {
         mCaption = caption;
+    }
+
+    public double getLat() {
+        return mLat;
+    }
+
+    public void setLat(double lat) {
+        mLat = lat;
+    }
+
+    public double getLon() {
+        return mLon;
+    }
+
+    public void setLon(double lon) {
+        mLon = lon;
     }
 }
