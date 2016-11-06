@@ -1,6 +1,7 @@
 package com.bignerdranch.android.locatr;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -37,6 +38,7 @@ public class LocatrFragment extends Fragment {
     private static final String TAG = "LocatrFragment";
     private static final int REQUEST_LOCATION = 0;
     private Bitmap mBitmap;
+    private ProgressDialog mProgressDialog;
 
     public static LocatrFragment newInstacne() {
         return new LocatrFragment();
@@ -122,6 +124,10 @@ public class LocatrFragment extends Fragment {
                     REQUEST_LOCATION);
         }
         else {
+            mProgressDialog = new ProgressDialog(getActivity());
+            mProgressDialog.setMessage("Loading...");
+            mProgressDialog.setTitle("Download");
+            mProgressDialog.show();
             LocationServices.FusedLocationApi
                     .requestLocationUpdates(mClient, request, new LocationListener() {
                         @Override
@@ -158,6 +164,7 @@ public class LocatrFragment extends Fragment {
 
         @Override
         protected void onPostExecute(Void result) {
+            mProgressDialog.cancel();
             mImageView.setImageBitmap(mBitmap);
         }
     }
